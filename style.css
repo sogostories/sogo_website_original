@@ -54,6 +54,14 @@ body {
     left: 0;
     padding: 1rem 0;
   }
+  /* widen the modal on small screens */
+@media (max-width:600px){
+  .dialog{
+    width:90vw;          /* almost full-width */
+    max-width:none;      /* ignore the 650 px cap */
+  }
+}
+
 
   .nav-links.active {
     display: flex;
@@ -246,3 +254,25 @@ footer {
     .flashcard{display:none;flex-direction:column;align-items:center;margin-top:1rem}
     .flashcard-content{background:#fff3cd;padding:1rem 2rem;margin:1rem;border-radius:10px;cursor:pointer;min-width:200px;text-align:center}
     .arrow-btn{font-size:1.2rem;background:#007bff;color:#fff;border:none;border-radius:8px;padding:.4rem .8rem;margin:0 .5rem;cursor:pointer}
+    .dialog-close{
+  position:absolute;
+  top:8px;
+  right:12px;
+  background:transparent;
+  border:none;
+  font-size:1.8rem;
+  line-height:1;
+  cursor:pointer;
+  color:#888;
+}
+.dialog-close:hover{color:#000}
+.flash-exit-btn{
+  margin-top:.8rem;
+  background:#6c757d;
+  color:#fff;
+  border:none;
+  padding:.4rem .9rem;
+  border-radius:6px;
+  cursor:pointer;
+}
+.flash-exit-btn:hover{background:#5a6268}

@@ -18,10 +18,10 @@
     <span></span>
   </div>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Library</a></li>
+    <li><a href="library.html">Home</a></li>
+    <li><a href="library.html">Library</a></li>
     <li><a href="#">How it Works</a></li>
-    <li><a href="#">About Us</a></li>
+    <li><a href="aboutus.html">About Us</a></li>
     <li><a href="#">Contact Us</a></li>
   </ul>
 </nav>
@@ -53,7 +53,7 @@
 
 <div class="dialog" id="storyDialog">
   <audio id="storyAudio" src="17 mai n.mp3" preload="metadata"></audio>
-
+<button class="dialog-close" onclick="closeDialog()">×</button>
   <p id="storyText">
     <span>17. mai er Norges nasjonaldag.</span>
     <span>Det var på denne dagen i 1814 at Norge fikk sin egen grunnlov.</span>
@@ -100,6 +100,8 @@
     <div>
       <button class="arrow-btn" onclick="prevWord()">⬅</button>
       <button class="arrow-btn" onclick="nextWord()">➡</button>
+      <button class="flash-exit-btn" onclick="closeFlashcard()">✖ Close</button>
+
     </div>
   </div>
 </div>
@@ -119,7 +121,7 @@
   </section>
 
   <section class="section">
-    <h2>Recommended for you <a href="#" class="view-all">sell all</a></h2>
+    <h2>Recommended for you <a href="#" class="view-all">see all</a></h2>
     <div class="cards">
       
       <div class="card"><img src="house.png" alt="Cabin"><h3>HYTTA - et hjem borte fra hjemmet</h3><p>a cabin - a home away from home</p>
@@ -140,7 +142,7 @@
 
   <footer>
     <div class="footer-column">
-      <div class="footer-logo">logo</div>
+      <div class="footer-logo"><img src="logo.png" alt="" height="50"></div>
       <p class="footer-text">Explore the stories, traditions, and adventures that make Norway unique.</p>
     </div>
     <div class="footer-column footer-links">

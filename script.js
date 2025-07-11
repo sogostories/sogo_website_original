@@ -35,80 +35,214 @@ const translations=[
 const startTimes=[5,9,15,19,29,36,42,52,62,75,79,87,93,98,102,105,110,117,122,127,133,139,142,146,151,156,160,164,172,177,182];
 
 const vocabulary = [
-  {word:'17. mai', translation:'May 17'},
-  {word:'grunnlov', translation:'constitution'},
-  {word:'Norge', translation:'Norway'},
-  {word:'nasjonaldag', translation:'National Day'},
-  {word:'skrevet', translation:'written'},
-  {word:'Eidsvoll', translation:'Eidsvoll'},
-  {word:'union', translation:'union'},
-  {word:'Danmark', translation:'Denmark'},
-  {word:'fri', translation:'free'},
-  {word:'land', translation:'country'},
-  {word:'menn', translation:'men'},
-  {word:'forskjellige', translation:'different'},
-  {word:'deler', translation:'parts'},
-  {word:'selvstendig', translation:'independent'},
-  {word:'august', translation:'August'},
-  {word:'gyldig', translation:'valid'},
-  {word:'hjalp', translation:'helped'},
-  {word:'begynnelsen', translation:'beginning'},
-  {word:'feiret', translation:'celebrated'},
-  {word:'private kretser', translation:'private circles'},
-  {word:'spredte', translation:'spread'},
-  {word:'glede', translation:'joy'},
-  {word:'stolthet', translation:'pride'},
-  {word:'hus', translation:'houses'},
-  {word:'dekorert', translation:'decorated'},
-  {word:'flagget', translation:'flag'},
-  {word:'gatene', translation:'streets'},
-  {word:'fulle', translation:'full'},
-  {word:'barnetoget', translation:'children’s parade'},
-  {word:'barn', translation:'children'},
-  {word:'skoler', translation:'schools'},
-  {word:'barnehager', translation:'kindergartens'},
-  {word:'går', translation:'walk'},
-  {word:'sanger', translation:'songs'},
-  {word:'roper', translation:'shout'},
-  {word:'hurra', translation:'hooray'},
-  {word:'bunader', translation:'national costumes'},
-  {word:'tradisjonelle', translation:'traditional'},
-  {word:'norske klær', translation:'Norwegian clothes'},
-  {word:'foreldre', translation:'parents'},
-  {word:'besteforeldre', translation:'grandparents'},
-  {word:'venner', translation:'friends'},
-  {word:'vinker', translation:'wave'},
-  {word:'korps', translation:'marching band'},
-  {word:'musikk', translation:'music'},
-  {word:'trommer', translation:'drums'},
-  {word:'fløyter', translation:'flutes'},
-  {word:'trompeter', translation:'trumpets'},
-  {word:'festlig', translation:'festive'},
-  {word:'stemning', translation:'atmosphere'},
-  {word:'russ', translation:'graduating students'},
-  {word:'videregående skole', translation:'upper secondary school'},
-  {word:'rødt', translation:'red'},
-  {word:'blått', translation:'blue'},
-  {word:'klær', translation:'clothes'},
-  {word:'mat', translation:'food'},
-  {word:'pølser', translation:'sausages'},
-  {word:'iskrem', translation:'ice cream'},
-  {word:'kaker', translation:'cakes'},
-  {word:'frokost', translation:'breakfast'},
-  {word:'lunsj', translation:'lunch'},
-  {word:'familie', translation:'family'},
-  {word:'bordene', translation:'tables'},
-  {word:'blomster', translation:'flowers'},
-  {word:'dag', translation:'day'},
-  {word:'elsker', translation:'love'},
-  {word:'overalt', translation:'everywhere'},
-  {word:'små', translation:'small'},
-  {word:'store', translation:'big'},
-  {word:'frihet', translation:'freedom'},
-  {word:'stolt', translation:'proud'},
-  {word:'historie', translation:'history'},
-  {word:'spesiell', translation:'special'},
-  {word:'glemmer aldri', translation:'never forget'}
+  
+
+  /* numbers & dates */
+  {word:'17. mai',             translation:'May 17'},
+  {word:'17.mai',              translation:'May 17'},
+  {word:'1814',                translation:'1814'},
+  {word:'1905',                translation:'1905'},
+
+  /* A */
+  {word:'aldri',               translation:'never'},
+  {word:'alle',                translation:'everyone'},
+  {word:'august',              translation:'August'},
+  {word:'av',                  translation:'of'},
+  {word:'også',                translation:'also'},
+  {word:'at',                  translation:'that'},
+  {word:'å',                   translation:'to'},
+  {word:'august',              translation:'August'},
+
+  /* B */
+  {word:'bare',                translation:'only'},
+  {word:'barn',                translation:'children'},
+  {word:'Barn',                translation:'children'},
+  {word:'barnetoget',          translation:"children’s parade"},
+  {word:'Barnehager',          translation:'kindergartens'},
+  {word:'begynnelsen',         translation:'beginning'},
+  {word:'bli',                 translation:'become'},
+  {word:'blomster',            translation:'flowers'},
+  {word:'blå',                 translation:'blue'},
+  {word:'bordene',             translation:'the tables'},
+  {word:'bunader',             translation:'national costumes'},
+  {word:'Bunader',             translation:'national costumes'},
+  {word:'både',                translation:'both'},
+  
+  /* D */
+  {word:'da',                  translation:'then'},
+  {word:'dagen',               translation:'day'},
+  {word:'dag',                 translation:'day'},
+  {word:'De',                  translation:'They'},
+  {word:'dem',                 translation:'them'},
+  {word:'denne',               translation:'this'},
+  {word:'Det',                 translation:'It'},
+  {word:'deler',               translation:'parts'},
+  {word:'Danmark',             translation:'Denmark'},
+  {word:'del',                 translation:'part'},
+  {word:'dekorert',            translation:'decorated'},
+  {word:'denne',               translation:'this'},
+  {word:'drums',               translation:'trommer'},   /* English->Norwegian placeholder */
+
+  /* E */
+  {word:'egen',                translation:'own'},
+  {word:'eller',               translation:'or'},
+  {word:'en',                  translation:'a'},
+  {word:'et',                  translation:'a'},
+  {word:'etter',               translation:'after'},
+  {word:'Eidsvoll',            translation:'Eidsvoll'},
+  {word:'fikk',                translation:'got'},
+  {word:'finnes',              translation:'exists'},    /* if needed */
+
+  /* F */
+  {word:'familie',             translation:'family'},
+  {word:'feirer',              translation:'celebrate'},
+  {word:'feiringen',           translation:'the celebration'},
+  {word:'feiret',              translation:'celebrated'},
+  {word:'festlig',             translation:'festive'},
+  {word:'flagget',             translation:'flag'},
+  {word:'flagg',               translation:'flags'},
+  {word:'fløyter',             translation:'flutes'},
+  {word:'for',                 translation:'for'},
+  {word:'foreldre',            translation:'parents'},
+  {word:'fri',                 translation:'free'},
+  {word:'frihet',              translation:'freedom'},
+  {word:'friheten',            translation:'the freedom'},
+  {word:'fremdeles',           translation:'still'},
+  {word:'frokost',             translation:'breakfast'},
+  {word:'frokoster',           translation:'breakfasts'},
+  {word:'fulle',               translation:'full'},
+
+  /* G */
+  {word:'gatene',              translation:'the streets'},
+  {word:'glede',               translation:'joy'},
+  {word:'glad',                translation:'fond'},
+  {word:'gikk',                translation:'went'},
+  {word:'gjennom',             translation:'through'},
+  {word:'Grunnloven',          translation:'the constitution'},
+  {word:'grunnloven',          translation:'the constitution'},
+  {word:'grunnlov',            translation:'constitution'},
+
+  /* H */
+  {word:'har',                 translation:'have'},
+  {word:'hjalp',               translation:'helped'},
+  {word:'hisp',                translation:'hip'},           /* for “hipp” */
+  {word:'hvert',               translation:'each'},
+  {word:'hurra',               translation:'hooray'},
+  {word:'Hipp',                translation:'Hip'},
+  {word:'hører',               translation:'hear'},
+  {word:'hus',                 translation:'house'},
+  {word:'husene',              translation:'the houses'},
+
+  /* I */
+  {word:'I',                   translation:'In'},
+  {word:'ikke',                translation:'not'},
+  {word:'inn',                 translation:'into'},
+  {word:'is',                  translation:'ice-cream'},
+
+  /* K */
+  {word:'kaker',               translation:'cakes'},
+  {word:'klær',                translation:'clothes'},
+  {word:'korps',               translation:'marching band'},
+  {word:'kretser',             translation:'circles'},
+  {word:'landet',              translation:'the country'},
+  {word:'lang',                translation:'long'},
+  {word:'lange',               translation:'long'},
+  {word:'lag',                 translation:'make/create'},
+  {word:'lager',               translation:'create'},
+  {word:'Ledende',             translation:'leading'},
+  {word:'lenge',               translation:'long'},
+  {word:'lunsj',               translation:'lunch'},
+  {word:'lunsjer',             translation:'lunches'},
+
+  /* M */
+  {word:'mai-feiringen',       translation:'May-17 celebration'},
+  {word:'man',                 translation:'one/people'},
+  {word:'Mat',                 translation:'food'},
+  {word:'mange',               translation:'many'},
+  {word:'Mange',               translation:'many'},
+  {word:'med',                 translation:'with'},
+  {word:'menn',                translation:'men'},
+  {word:'mennesker',           translation:'people'},
+  {word:'mer',                 translation:'more'},         /* optional */
+  {word:'møttes',              translation:'met'},
+  {word:'musikk',              translation:'music'},
+
+  /* N */
+  {word:'nasjonaldag',         translation:'national day'},
+  {word:'Norge',               translation:'Norway'},
+  {word:'Norges',              translation:"Norway’s"},
+  {word:'norske',              translation:'Norwegian'},
+  {word:'ny',                  translation:'new'},
+  {word:'nummer',              translation:'number'},       /* if needed */
+
+  /* O */
+  {word:'og',                  translation:'and'},
+  {word:'Overalt',             translation:'everywhere'},
+  {word:'ønsket',              translation:'wanted'},
+
+  /* P */
+  {word:'på',                  translation:'on'},
+  {word:'pølser',              translation:'sausages'},
+  {word:'pynter',              translation:'decorate'},
+  {word:'pyntet',              translation:'decorated'},
+
+  /* R */
+  {word:'røde',                translation:'red'},
+  {word:'rundt',               translation:'around'},
+  {word:'russetog',            translation:'russ parade'},
+
+  /* S */
+  {word:'seg',                 translation:'themselves'},
+  {word:'Selvstendigheten',    translation:'the independence'},
+  {word:'selvstendig',         translation:'independent'},
+  {word:'selvstendighet',      translation:'independence'},
+  {word:'Sverige',             translation:'Sweden'},
+  {word:'små',                 translation:'small'},
+  {word:'spesiell',            translation:'special'},
+  {word:'spiser',              translation:'eat'},
+  {word:'ste',                 translation:'step'},         /* optional typo fix */
+  {word:'stemning',            translation:'atmosphere'},
+  {word:'stolte',              translation:'proud (adj)'},
+  {word:'stolthet',            translation:'pride'},
+  {word:'stor',                translation:'big'},          /* root */
+  {word:'store',               translation:'big'},
+  {word:'synger',              translation:'sing'},
+  {word:'sanger',              translation:'songs'},
+  {word:'ser',                 translation:'see'},
+  {word:'skole',               translation:'school'},
+  {word:'skoler',              translation:'schools'},
+  {word:'skrevet',             translation:'written'},
+  {word:'skrev',               translation:'wrote'},
+
+  /* T */
+  {word:'til',                 translation:'to'},
+  {word:'tiden',               translation:'time'},
+  {word:'tog',                 translation:'parade'},
+  {word:'toget',               translation:'the parade'},
+  {word:'trommer',             translation:'drums'},
+  {word:'trompeter',           translation:'trumpets'},
+
+  /* U */
+  {word:'ulike',               translation:'various'},
+  {word:'union',               translation:'union'},
+  {word:'ungdommer',           translation:'youth'},
+  {word:'utbredt',             translation:'widespread'},
+
+  /* V */
+  {word:'var',                 translation:'was'},
+  {word:'varte',               translation:'lasted'},
+  {word:'vår',                 translation:'our'},
+  {word:'vi',                  translation:'we'},
+  {word:'visse',               translation:'certain'},
+  {word:'vite',                translation:'know'},         /* optional */
+  {word:'viktig',              translation:'important'},
+  {word:'vifter',              translation:'wave'},
+  {word:'videregående',        translation:'upper secondary'},
+
+  /* Ø */
+  {word:'ønsket',              translation:'wanted'}
+
+
 ];
 
 
@@ -140,8 +274,18 @@ function handleTimeUpdate(){
 
 audio.addEventListener('timeupdate',handleTimeUpdate);
 audio.addEventListener('ended',()=>{clearHighlight();toast.style.display='none';readingIndex=0});
-
-function playStory(){exitWordMode();audio.currentTime=startTimes[readingIndex];audio.play()}
+function playStory() {
+  exitWordMode(); // exit word mode if active
+  audio.currentTime = startTimes[readingIndex];
+  audio.play();
+  highlightCurrentSentence(); // ⬅️ manually highlight on play
+}
+function highlightCurrentSentence() {
+  clearHighlight();
+  segments[readingIndex].classList.add('highlight');
+  toast.textContent = translations[readingIndex];
+  toast.style.display = 'block';
+}
 function pauseStory(){audio.pause();toast.style.display='none';clearHighlight()}
 
 /**************  SEGMENT CLICK – sentence playback  ****************/
@@ -198,13 +342,26 @@ function exitWordMode(){
 function wordClickHandler(e){
   e.stopPropagation();
   clearHighlight();
-  const span=e.target;
+
+  const span = e.target;
   span.classList.add('highlight');
-  const clean=span.textContent.toLowerCase().replace(/[^a-zæøåA-ZÆØÅ]/g,'');
-  const entry=vocabulary.find(v=>v.word.toLowerCase()===clean);
-  toast.textContent=entry?`${entry.word} = ${entry.translation}`:'Translation not available';
-  toast.style.display='block';
+
+  // Clean the word and look up in vocabulary
+  const clean = span.textContent.toLowerCase().replace(/[^a-zæøåA-ZÆØÅ]/g, '');
+  const entry = vocabulary.find(v => v.word.toLowerCase() === clean);
+  toast.textContent = entry ? `${entry.word} = ${entry.translation}` : 'Translation not available';
+  toast.style.display = 'block';
+
+  // ▶️ Play the sentence that contains the clicked word
+  const parentSegment = span.closest('span');
+  const idx = segments.indexOf(parentSegment);
+  if (idx !== -1) {
+    readingIndex = idx;
+    audio.currentTime = startTimes[idx];
+    audio.play();
+  }
 }
+
 
 /**************  FLASH‑CARD MODE  ****************/ 
 const flashcard=document.getElementById('flashcard');
@@ -215,6 +372,19 @@ function updateFlashcard(){flashcardContent.textContent=vocabulary[currentWordId
 function revealMeaning(){if(flashcardContent.dataset.side==='word'){flashcardContent.textContent=vocabulary[currentWordIdx].translation;flashcardContent.dataset.side='translation'}else{updateFlashcard()}}
 function nextWord(){currentWordIdx=(currentWordIdx+1)%vocabulary.length;updateFlashcard()}
 function prevWord(){currentWordIdx=(currentWordIdx-1+vocabulary.length)%vocabulary.length;updateFlashcard()}
+function closeFlashcard(){
+  flashcard.style.display='none';
+}
 
 /**************  MODAL  ****************/ 
 function showDialog(){document.getElementById('overlay').style.display='block';document.getElementById('storyDialog').style.display='block'}
+function closeDialog(){
+  pauseStory();              // stop audio & highlight
+  exitWordMode();            // make sure word mode is reset
+  flashcard.style.display='none';
+  document.getElementById('overlay').style.display='none';
+  document.getElementById('storyDialog').style.display='none';
+}
+
+/* allow a tap on the dark backdrop to close as well */
+document.getElementById('overlay').addEventListener('click', closeDialog);
