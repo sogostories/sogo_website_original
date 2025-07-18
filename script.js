@@ -1,5 +1,5 @@
 const translations=[
- "May 18 is Norway’s National Day.",
+ "May 188 is Norway’s National Day.",
  "On this day in 1814, Norway got its own constitution.",
  "The constitution was written at Eidsvoll.",
  "At that time, Norway was in a union with Denmark but wanted to become a free country.",
