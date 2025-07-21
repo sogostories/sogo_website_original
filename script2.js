@@ -1,4 +1,4 @@
-const stories = {
+const translations = {
   hytta: {
     translations: [
       "The cabin culture in Norway is an important part of Norwegian life.",
@@ -390,7 +390,8 @@ const stories = {
 
 
 // ---- GLOBALS for current selected story
-let translations = [];
+
+let activeTranslations = [];
 let startTimes = [];
 let vocabulary = [];
 let readingIndex = 0;
@@ -398,6 +399,8 @@ let wordMode = false;
 let segments = [];
 
 // ---- COMMON DOM references outside modal open
+
+const storyText = document.getElementById('storyText');
 const toast = document.getElementById('toast');
 const audio = document.getElementById('storyAudio');
 const wordBtn = document.getElementById('wordModeBtn');
@@ -407,17 +410,16 @@ const flashcardContent = document.getElementById('flashcardContent');
 
 // ---- SHOW STORY: this function swaps all the story data
 function showStory(storyKey) {
-  const s = stories[storyKey];
+  const s = translations[storyKey];
   if (!s) return;
-  translations = s.translations;
+  activeTranslations = s.translations; 
   startTimes = s.startTimes;
   vocabulary = s.vocabulary;
   readingIndex = 0;
   wordMode = false;
   
   document.getElementById('storyTitle').textContent = s.title || '';
-  // Fill in sentences in the modal
-  document.getElementById('storyText').innerHTML = translations.map(line=>`<span>${line}</span>`).join('');
+  storyText.innerHTML = activeTranslations.map(line => `<span>${line}</span>`).join('');
   audio.src = s.audioSrc;
   flashcard.style.display = 'none';
   toast.style.display = 'none';
@@ -431,7 +433,7 @@ function showStory(storyKey) {
       audio.currentTime = startTimes[idx];
       clearHighlight();
       segment.classList.add('highlight');
-      toast.textContent = translations[idx];
+      toast.textContent = activeTranslations[idx];
       toast.style.display = 'block';
       playStory();
     };
