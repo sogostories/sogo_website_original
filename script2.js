@@ -1,4 +1,4 @@
-const translations = {
+const translationsData = {
   hytta: {
     translations: [
       "The cabin culture in Norway is an important part of Norwegian life.",
@@ -410,7 +410,7 @@ const flashcardContent = document.getElementById('flashcardContent');
 
 // ---- SHOW STORY: this function swaps all the story data
 function showStory(storyKey) {
-  const s = translations[storyKey];
+  const s = translationsData[storyKey];
   if (!s) return;
   activeTranslations = s.translations; 
   startTimes = s.startTimes;
@@ -423,27 +423,30 @@ function showStory(storyKey) {
   audio.src = s.audioSrc;
   flashcard.style.display = 'none';
   toast.style.display = 'none';
+  clearHighlight();
 
-  // Update 'segments' and segment listeners!
+  // Register sentence click handlers
   segments = Array.from(document.querySelectorAll('#storyText span'));
+
+  // Update 'segments' and segment listeners! 
   segments.forEach((segment, idx) => {
     segment.style.cursor = 'pointer';
-    segment.onclick = () => {
+    segment.addEventListener('click', () => {
       readingIndex = idx;
       audio.currentTime = startTimes[idx];
+
       clearHighlight();
       segment.classList.add('highlight');
+
       toast.textContent = activeTranslations[idx];
       toast.style.display = 'block';
-      playStory();
-    };
-  });
 
-  // Show the modal
-  document.getElementById('overlay').style.display = 'block';
-  document.getElementById('storyDialog').style.display = 'block';
-  audio.pause();
-  clearHighlight();
+      playStory(); // reuse your existing function!
+    });
+  });
+  showDialog();
+ 
+  audio.pause(); 
 }
 
 // … now, all your other functions for word mode, flashcards, etc are the same!
