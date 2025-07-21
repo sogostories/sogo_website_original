@@ -389,17 +389,26 @@ const storiesData = {
 
 /**************  DOM  ****************/ 
 let segments = []; // Changed to 'let' for dynamic reassignment
+let readingIndex = 0;
 const toast = document.getElementById('toast');
 const audio = document.getElementById('storyAudio');
 const wordBtn = document.getElementById('wordModeBtn');
-
+const flashcard = document.getElementById('flashcard');
+const flashcardContent = document.getElementById('flashcardContent');
 
 /**************  STATE  ****************/ 
+// State
 let readingIndex = 0;
 let wordMode = false;
+let translations = []; // Global for current story translations
+let startTimes = []; // Global for current story startTimes
+let vocabulary = []; // Global for current story vocabulary
+
 
 /**************  AUDIO PLAYBACK  ****************/ 
-function clearHighlight() { segments.forEach(s => s.classList.remove('highlight')); }
+function clearHighlight() { 
+  segments.forEach(s => s.classList.remove('highlight')); 
+}
 
 function handleTimeUpdate() {
   if (wordMode) return; // ignore in word mode
@@ -431,65 +440,140 @@ function highlightCurrentSentence() {
   toast.style.display = 'block';
 }
 
-function pauseStory() { audio.pause(); toast.style.display = 'none'; clearHighlight(); }
-
-/**************  SHOW STORY (NEW FUNCTION TO MAKE CARDS CLICKABLE) ****************/
-function showStory(storyKey) {
-  const s = storiesData[storyKey];
-  if (!s) return;
-
-  // Load story data
-  translations = s.translations;
-  startTimes = s.startTimes;
-  vocabulary = s.vocabulary;
-  readingIndex = 0;
-  wordMode = false;
-
-  // Populate modal
-  document.getElementById('storyTitle').textContent = storyKey.charAt(0).toUpperCase() + storyKey.slice(1); // e.g., "Nationaldag"
-  const storyText = document.getElementById('storyText');
-  storyText.innerHTML = translations.map(line => `<span>${line}</span>`).join('');
-  audio.src = s.audioSrc;
-  audio.pause();
-  clearHighlight();
-
-  // Update segments and add click listeners
-  segments = Array.from(document.querySelectorAll('#storyText span'));
-  segments.forEach((segment, idx) => {
-    segment.style.cursor = 'pointer';
-    segment.addEventListener('click', () => {
-      readingIndex = idx;
-      audio.currentTime = startTimes[idx];
-      clearHighlight();
-      segment.classList.add('highlight');
-      toast.textContent = translations[idx];
-      toast.style.display = 'block';
-      playStory();
-    });
-  });
-
-  // Open modal
-  showDialog();
+function pauseStory() { 
+  audio.pause(); 
+  toast.style.display = 'none'; 
+  clearHighlight(); 
 }
 
-/**************  SEGMENT CLICK – sentence playback  ****************/ 
-// (Your original code is kept, but since we update in showStory, it's redundant here unless you need it for initial load)
+// Word Mode
+function toggleWordMode() {
+  wordMode ? exitWordMode() : enterWordMode();
+}
 
-// Your word mode, flashcard, and modal functions remain the same...
-// [Paste the rest of your functions here: toggleWordMode, enterWordMode, exitWordMode, wordClickHandler, startVocabMode, etc.]
+function enterWordMode() {
+  wordMode = true;
+  wordBtn.textContent = 'Exit Word Mode';
+  pauseStory();
+  toast.style.display = 'none';
+  segments.forEach(seg => {
+    const words = seg.textContent.split(/(\s+)/);
+    seg.innerHTML = words.map(w => /\s+/.test(w) ? w : `<span class='word'>${w}</span>`).join('');
+    seg.querySelectorAll('span.word').forEach(wspan => {
+      wspan.style.cursor = 'pointer';
+      wspan.addEventListener('click', wordClickHandler);
+    });
+  });
+}
 
-/**************  MODAL  ****************/ 
+
+function exitWordMode() {
+  if (!wordMode) return;
+  wordMode = false;
+  wordBtn.textContent = 'Word Translation Mode';
+  toast.style.display = 'none';
+  segments.forEach(seg => { seg.textContent = seg.innerText; });
+  clearHighlight();
+}
+
+function wordClickHandler(e) {
+  e.stopPropagation();
+  clearHighlight();
+  const span = e.target;
+  span.classList.add('highlight');
+  const clean = span.textContent.toLowerCase().replace(/[^a-zæøåA-ZÆØÅ]/g, '');
+  const entry = vocabulary.find(v => v.word.toLowerCase() === clean);
+  toast.textContent = entry ? `${entry.word} = ${entry.translation}` : 'Translation not available';
+  toast.style.display = 'block';
+  const parentSegment = span.closest('span');
+  const idx = segments.indexOf(parentSegment);
+  if (idx !== -1) {
+    readingIndex = idx;
+    audio.currentTime = startTimes[idx];
+    audio.play();
+  }
+}
+
+
+let currentWordIdx = 0;
+function startVocabMode() {
+  exitWordMode();
+  flashcard.style.display = 'flex';
+  currentWordIdx = 0;
+  updateFlashcard();
+}
+function updateFlashcard() {
+  flashcardContent.textContent = vocabulary[currentWordIdx].word;
+  flashcardContent.dataset.side = 'word';
+}
+function revealMeaning() {
+  if (flashcardContent.dataset.side === 'word') {
+    flashcardContent.textContent = vocabulary[currentWordIdx].translation;
+    flashcardContent.dataset.side = 'translation';
+  } else {
+    updateFlashcard();
+  }
+}
+function nextWord() {
+  currentWordIdx = (currentWordIdx + 1) % vocabulary.length;
+  updateFlashcard();
+}
+function prevWord() {
+  currentWordIdx = (currentWordIdx - 1 + vocabulary.length) % vocabulary.length;
+  updateFlashcard();
+}
+function closeFlashcard() {
+  flashcard.style.display = 'none';
+}
+
+// Modal
 function showDialog() {
   document.getElementById('overlay').style.display = 'block';
   document.getElementById('storyDialog').style.display = 'block';
 }
 
 function closeDialog() {
-  pauseStory(); // stop audio & highlight
-  exitWordMode(); // reset word mode
-  flashcard.style.display = 'none'; // if you have this
+  pauseStory();
+  exitWordMode();
+  closeFlashcard();
   document.getElementById('overlay').style.display = 'none';
   document.getElementById('storyDialog').style.display = 'none';
 }
 
 document.getElementById('overlay').addEventListener('click', closeDialog);
+
+// Show Story (makes cards clickable)
+function showStory(storyKey) {
+  const s = storiesData[storyKey];
+  if (!s) return;
+
+  translations = s.translations;
+  startTimes = s.startTimes;
+  vocabulary = s.vocabulary;
+  readingIndex = 0;
+  wordMode = false;
+
+  document.getElementById('storyTitle').textContent = s.title;
+
+  const storyTextEl = document.getElementById('storyText');
+  storyTextEl.innerHTML = s.translations.map(line => `<span>${line}</span>`).join('');
+  audio.src = s.audioSrc;
+  audio.pause();
+  clearHighlight();
+
+  segments = Array.from(document.querySelectorAll('#storyText span'));
+  segments.forEach((segment, idx) => {
+    segment.style.cursor = 'pointer';
+    segment.addEventListener('click', () => {
+      readingIndex = idx;
+      audio.currentTime = s.startTimes[idx] || 0;
+      clearHighlight();
+      segment.classList.add('highlight');
+      toast.textContent = s.translations[idx];
+      toast.style.display = 'block';
+      playStory();
+    });
+  });
+
+  showDialog();
+}
