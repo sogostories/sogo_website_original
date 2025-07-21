@@ -1,4 +1,4 @@
-const translationsData = {
+const storiesData = {
   hytta: {
     translations: [
       "The cabin culture in Norway is an important part of Norwegian life.",
@@ -381,80 +381,115 @@ const translationsData = {
     
       /* Ø */
       {word:'ønsket',              translation:'wanted'}
-    
-    
     ],
     audioSrc: '17 mai n.mp3' // make sure it's the correct filename
     }
   };
 
 
-// ---- GLOBALS for current selected story
-
-let activeTranslations = [];
-let startTimes = [];
-let vocabulary = [];
-let readingIndex = 0;
-let wordMode = false;
-let segments = [];
-
-// ---- COMMON DOM references outside modal open
-
-const storyText = document.getElementById('storyText');
+/**************  DOM  ****************/ 
+let segments = []; // Changed to 'let' for dynamic reassignment
 const toast = document.getElementById('toast');
 const audio = document.getElementById('storyAudio');
 const wordBtn = document.getElementById('wordModeBtn');
-const flashcard = document.getElementById('flashcard');
-const flashcardContent = document.getElementById('flashcardContent');
 
 
-// ---- SHOW STORY: this function swaps all the story data
+/**************  STATE  ****************/ 
+let readingIndex = 0;
+let wordMode = false;
+
+/**************  AUDIO PLAYBACK  ****************/ 
+function clearHighlight() { segments.forEach(s => s.classList.remove('highlight')); }
+
+function handleTimeUpdate() {
+  if (wordMode) return; // ignore in word mode
+  const cur = audio.currentTime;
+  const idx = startTimes.findIndex((s, i) => cur >= s && (i === startTimes.length - 1 || cur < startTimes[i + 1]));
+  if (idx !== -1 && idx !== readingIndex) {
+    clearHighlight();
+    segments[idx].classList.add('highlight');
+    toast.textContent = translations[idx];
+    toast.style.display = 'block';
+    readingIndex = idx;
+  }
+}
+
+audio.addEventListener('timeupdate', handleTimeUpdate);
+audio.addEventListener('ended', () => { clearHighlight(); toast.style.display = 'none'; readingIndex = 0; });
+
+function playStory() {
+  exitWordMode(); // exit word mode if active
+  audio.currentTime = startTimes[readingIndex];
+  audio.play();
+  highlightCurrentSentence(); // manually highlight on play
+}
+
+function highlightCurrentSentence() {
+  clearHighlight();
+  segments[readingIndex].classList.add('highlight');
+  toast.textContent = translations[readingIndex];
+  toast.style.display = 'block';
+}
+
+function pauseStory() { audio.pause(); toast.style.display = 'none'; clearHighlight(); }
+
+/**************  SHOW STORY (NEW FUNCTION TO MAKE CARDS CLICKABLE) ****************/
 function showStory(storyKey) {
-  const s = translationsData[storyKey];
+  const s = storiesData[storyKey];
   if (!s) return;
-  activeTranslations = s.translations; 
+
+  // Load story data
+  translations = s.translations;
   startTimes = s.startTimes;
   vocabulary = s.vocabulary;
   readingIndex = 0;
   wordMode = false;
-  
-  document.getElementById('storyTitle').textContent = s.title || '';
-  storyText.innerHTML = activeTranslations.map(line => `<span>${line}</span>`).join('');
+
+  // Populate modal
+  document.getElementById('storyTitle').textContent = storyKey.charAt(0).toUpperCase() + storyKey.slice(1); // e.g., "Nationaldag"
+  const storyText = document.getElementById('storyText');
+  storyText.innerHTML = translations.map(line => `<span>${line}</span>`).join('');
   audio.src = s.audioSrc;
-  flashcard.style.display = 'none';
-  toast.style.display = 'none';
+  audio.pause();
   clearHighlight();
 
-  // Register sentence click handlers
+  // Update segments and add click listeners
   segments = Array.from(document.querySelectorAll('#storyText span'));
-
-  // Update 'segments' and segment listeners! 
   segments.forEach((segment, idx) => {
     segment.style.cursor = 'pointer';
     segment.addEventListener('click', () => {
       readingIndex = idx;
       audio.currentTime = startTimes[idx];
-
       clearHighlight();
       segment.classList.add('highlight');
-
-      toast.textContent = activeTranslations[idx];
+      toast.textContent = translations[idx];
       toast.style.display = 'block';
-
-      playStory(); // reuse your existing function!
+      playStory();
     });
   });
+
+  // Open modal
   showDialog();
- 
-  audio.pause(); 
 }
 
-// … now, all your other functions for word mode, flashcards, etc are the same!
-// (Just make sure they use the current globals: translations, vocabulary, etc)
+/**************  SEGMENT CLICK – sentence playback  ****************/ 
+// (Your original code is kept, but since we update in showStory, it's redundant here unless you need it for initial load)
 
-// Example: clearHighlight
-function clearHighlight(){segments.forEach(s=>s.classList.remove('highlight'));}
-// ...etc...
+// Your word mode, flashcard, and modal functions remain the same...
+// [Paste the rest of your functions here: toggleWordMode, enterWordMode, exitWordMode, wordClickHandler, startVocabMode, etc.]
 
-// Don't forget 'overlay' click to close!
+/**************  MODAL  ****************/ 
+function showDialog() {
+  document.getElementById('overlay').style.display = 'block';
+  document.getElementById('storyDialog').style.display = 'block';
+}
+
+function closeDialog() {
+  pauseStory(); // stop audio & highlight
+  exitWordMode(); // reset word mode
+  flashcard.style.display = 'none'; // if you have this
+  document.getElementById('overlay').style.display = 'none';
+  document.getElementById('storyDialog').style.display = 'none';
+}
+
 document.getElementById('overlay').addEventListener('click', closeDialog);
