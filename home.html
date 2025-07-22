@@ -1,197 +1,164 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Norway Culture Site</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<header>
-  <nav class="navbar">
-    <div class="logo"><img src="logo.png" alt="" height="50" /></div>
-    <div class="nav-toggle" id="navToggle">
-      <span></span><span></span><span></span>
-    </div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="library.html">Home</a></li>
-      <li><a href="library.html">Library</a></li>
-      <li><a href="#">How it Works</a></li>
-      <li><a href="aboutus.html">About Us</a></li>
-      <li><a href="#">Contact Us</a></li>
-    </ul>
-  </nav>
-  <script>
-    const navToggle = document.getElementById("navToggle");
-    const navLinks = document.getElementById("navLinks");
-    navToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-    });
-  </script>
-  <div class="hero">
-    <img src="learner.png" alt="Hero" />
-    <div class="hero-text"></div>
+  <header>
+   <!-- Navbar -->
+<nav class="navbar">
+  <div class="logo"><img src="logo.png" alt="" height="50"></div>
+  <div class="nav-toggle" id="navToggle">
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
-</header>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="library.html">Home</a></li>
+    <li><a href="library.html">Library</a></li>
+    <li><a href="#">How it Works</a></li>
+    <li><a href="aboutus.html">About Us</a></li>
+    <li><a href="#">Contact Us</a></li>
+  </ul>
+</nav>
 
-<section class="section">
-  <h2>Latest Stories</h2>
-  <div class="cards">
-    <div class="card" onclick="showStory('nationaldag')">
-      <img src="norway flag.png" alt="Norwegian Flag" />
-      <h3>17.mai - Norges nasjonaldag</h3>
-      <p>17. mai - Norway national day</p>
-    </div>
-    <div class="card" onclick="showStory('hytta')">
-      <img src="house.png" alt="Cabin" />
-      <h3>HYTTA - et hjem borte fra hjemmet</h3>
-      <p>En hytte - et hjem borte fra hjemmet</p>
-    </div>
-    <div class="card"><img src="village.png" alt="Volunteers" /><h3>Den norske dugnadsånden</h3><p>The Norwegian spirit of voluntary work</p></div>
-    <div class="card"><img src="home.png" alt="House Purchase" /><h3>Mitt første boligkjøp</h3><p>My house purchase</p></div>
-  </div>
-</section>
+<!-- JavaScript to toggle menu -->
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
 
-<div id="overlay" class="overlay" onclick="closeDialog()"></div>
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
+
+    <div class="hero">
+      <img src="learner.png" alt="Wedding Scene">
+      <div class="hero-text">
+        <!-- <h1>PARKER & JODY</h1> -->
+        <!-- <p>are getting married</p> -->
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>Latest Stories</h2>
+    <div class="cards">
+      <div class="card" onclick="showDialog()"><img src="norway flag.png" alt="Norwegian Flag"><h3>17.mai - Norges nasjonaldag</h3><p>17th may - Norway national day</p></div>
+      <div id="overlay" class="overlay"></div>
+
 <div class="dialog" id="storyDialog">
-  <audio id="storyAudio" controls preload="metadata"></audio>
-  <button class="dialog-close" onclick="closeDialog()">×</button>
-  <h2 id="storyTitle"></h2>
-  <p id="storyText"></p>
+  <audio id="storyAudio" src="17 mai n.mp3" preload="metadata"></audio>
+<button class="dialog-close" onclick="closeDialog()">×</button>
+  <p id="storyText">
+    <span>17. mai er Norges nasjonaldag.</span>
+    <span>Det var på denne dagen i 1814 at Norge fikk sin egen grunnlov.</span>
+    <span>Grunnloven ble skrevet på Eidsvoll.</span>
+    <span>På denne tiden var Norge i union med Danmark, men ønsket å bli et fritt land.</span>
+    <span>Ledende menn fra ulike deler av Norge møttes og skrev grunnloven.</span>
+    <span>Norge ble da et selvstendig land.</span>
+    <span>Selvstendigheten varte ikke lenge og Norge gikk inn i en ny union med Sverige i august 1814.</span>
+    <span>Grunnloven fra 1814 var fremdeles gyldig og hjalp Norge til selvstendighet i 1905.</span>
+    <span>I begynnelsen ble 17.mai bare feiret i visse private kretser, før feiringen etter hvert ble utbredt.</span>
+    <span>I dag feirer vi 17. mai med glede og stolthet landet rundt.</span>
+    <span>Folk pynter husene sine med norske flagg og gatene er fulle av mennesker.</span>
+    <span>Barnetoget er en viktig del av 17. mai‑feiringen.</span>
+    <span>Barn fra skoler og barnehager går i tog gjennom byen.</span>
+    <span>De synger sanger og roper hurra.</span>
+    <span>Mange barn har på seg bunader.</span>
+    <span>Bunader er tradisjonelle norske klær.</span>
+    <span>Foreldre, besteforeldre og venner ser på barnetoget og vifter med flagg.</span>
+    <span>Korps spiller musikk i toget.</span>
+    <span>Trommer, fløyter og trompeter lager festlig stemning.</span>
+    <span>Det er også russetog, hvor ungdommer som er ferdige med videregående skole, går i tog.</span>
+    <span>De har på seg røde eller blå klær.</span>
+    <span>Mat er en viktig del av feiringen.</span>
+    <span>Vi spiser pølser, is og kaker.</span>
+    <span>Mange har også frokoster og lunsjer med familie og venner.</span>
+    <span>Bordene er pyntet med flagg og blomster.</span>
+    <span>Det er en dag for å være sammen med dem man er glad i.</span>
+    <span>17. mai er en dag full av glede.</span>
+    <span>Overalt hører man folk rope: "Hipp hipp hurra, hurra, hurra!"</span>
+    <span>Det er en dag for alle i Norge, både store og små.</span>
+    <span>Vi feirer friheten vår og vår stolte historie.</span>
+    <span>17. mai er virkelig en spesiell dag i Norge, en dag vi aldri glemmer.</span>
+  </p>
+
+  <div class="controls">
+    <button class="play-btn"  onclick="playStory()">▶ Play</button>
+    <button class="pause-btn" onclick="pauseStory()">⏸ Pause</button>
+    <button class="vocab-btn" onclick="startVocabMode()">Flash‑Cards</button>
+    <button class="word-btn"  id="wordModeBtn" onclick="toggleWordMode()">Word Translation Mode</button>
+  </div>
+
+  <div class="flashcard" id="flashcard">
+    <div class="flashcard-content" id="flashcardContent" onclick="revealMeaning()">...</div>
+    <div>
+      <button class="arrow-btn" onclick="prevWord()">⬅</button>
+      <button class="arrow-btn" onclick="nextWord()">➡</button>
+      <button class="flash-exit-btn" onclick="closeFlashcard()">✖ Close</button>
+
+    </div>
+  </div>
 </div>
 
-<section class="nature">
-  <img src="second.png" alt="Waterfall" />
-  <div class="nature-text"></div>
-</section>
-
-<section class="section">
-  <h2>Anbefalt for deg <a href="#" class="view-all">se alle</a></h2>
-  <div class="cards">
-    <div class="card" onclick="showStory('hytta')">
-      <img src="house.png" alt="Cabin" />
-      <h3>HYTTA - et hjem borte fra hjemmet</h3>
-      <p>En hytte - et hjem borte fra hjemmet</p>
+<div class="toast" id="toast">oversettelse…</div>
+      <div class="card"><img src="village.png" alt="Volunteers"><h3>Den norske dugnadsånden</h3><p>The Norwegian spirit of voluntary work</p></div>
+      <div class="card"><img src="home.png" alt="House Purchase"><h3>Mitt første boligkjøp</h3><p>My house purchase</p></div>
     </div>
-    <div class="card"><img src="paint.png" alt="Brushes" /><h3>Edvard Munch</h3><p>(Norsk maler)</p></div>
-    <div class="card"><img src="mountain.png" alt="Skiers" /><h3>Nordmenn er født med ski på beina</h3><p>Nordmenn er født med ski på beina</p></div>
-  </div>
-</section>
+  </section>
 
-<section class="section">
-  <h2>Kategorier <a href="#" class="view-all">se alle</a></h2>
-  <div class="cards">
-    <div class="card"><img src="insudtry.png" alt="Oil Rig" /><h3>Det norske oljeeventyret</h3><p>Det norske oljeeventyret</p></div>
-    <div class="card"><img src="easter.png" alt="Easter" /><h3>Norske påsketradisjoner</h3><p>Norske påsketradisjoner</p></div>
-    <div class="card"><img src="beach.png" alt="Granka Beach" /><h3>Granka - Det norske paradiset Granka</h3><p>Granka - Det norske paradiset</p></div>
-  </div>
-</section>
+  <section class="nature">
+    <img src="second.png" alt="Waterfall">
+    <div class="nature-text">
+      <!-- <h2>Heed the call of nature and <em>leave it all behind.</em></h2>
+      <button>BOOK NOW →</button> -->
+    </div>
+  </section>
 
-<footer>
-  <div class="footer-column">
-    <div class="footer-logo"><img src="logo.png" alt="" height="50" /></div>
-    <p class="footer-text">Utforsk historiene, tradisjonene og eventyrene som gjør Norge unikt.</p>
-  </div>
-  <div class="footer-column footer-links">
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Library</a></li>
-      <li><a href="#">How it works</a></li>
-      <li><a href="#">About us</a></li>
-      <li><a href="#">Contact us</a></li>
-    </ul>
-  </div>
-  <div class="footer-column"></div>
-</footer>
+  <section class="section">
+    <h2>Recommended for you <a href="#" class="view-all">see all</a></h2>
+    <div class="cards">
+      
+      <div class="card"><img src="house.png" alt="Cabin"><h3>HYTTA - et hjem borte fra hjemmet</h3><p>a cabin - a home away from home</p>
+        </div>
+      <div class="card"><img src="paint.png" alt="Brushes"><h3>Edvard Munch</h3><p>(Norwegian painter) - Brushes to illustrate painting</p></div>
+      <div class="card"><img src="mountain.png" alt="Skiers"><h3>Nordmenn er født med ski på beina</h3><p>Norwegians are born with skis on their feet</p></div>
+    </div>
+  </section>
 
-<script>
-const stories = {
-  hytta: {
-    title: "HYTTA - et hjem borte fra hjemmet",
-    translations: [
-      "Hyttekulturen i Norge er en viktig del av det norske livet.",
-      "Mange nordmenn har en hytte, som er et lite hus i naturen.",
-      "Hytter kan være på fjellet, ved sjøen, i skogen eller på øyer.",
-      "Hytter kan være gamle eller nye, store eller små, enkle eller luksuriøse.",
-      "Ordet ‘hytte’ kommer fra det gamle norrøne ordet ‘hýtti’, som betyr ‘lite hus’.",
-      "Det første beviset på at nordmenn hadde hytter er fra 1100-tallet.",
-      "Da var hyttene brukt av bønder, jegere og fiskere.",
-      "Senere ble hyttene brukt av kunstnere, forfattere og kongelige.",
-      "I dag har nesten 400 000 nordmenn en hytte.",
-      "Nordmenn liker å dra på hyttetur for å slappe av, kose seg og være ute.",
-      "De drar ofte på hyttetur på fredager, og blir der til søndag.",
-      "Mange nordmenn kaller det for ‘fredagsturen’.",
-      "På kontoret er det dermed veldig få som kommer på jobb på fredager, ellers slutter de fleste nordmenn tidligere, slik at de slipper å stå i kø på vei til hytta.",
-      "De drar også på hyttetur i høytider som påske, jul og 17. mai.",
-      "De drar på hyttetur både sommer og vinter.",
-      "Når nordmenn er på hyttetur, gjør de mange forskjellige aktiviteter.",
-      "De går på tur i naturen, fisker, bader, sykler, spiller spill, leser bøker og lager mat.",
-      "Typisk turmat på hytta er for eksempel kvikklunsj, klementiner, brødskiver med ost og skinke, pølser etc.",
-      "Hyttekulturen i Norge er sentral fordi den viser hvordan nordmenn elsker naturen og familien sin.",
-      "Hytta er et sted der nordmenn kan være seg selv, og ha det gøy sammen.",
-      "Hytta er et symbol på det norske folket og deres verdier.",
-      "I Norge er det mange fjell og vakker natur, så hyttene gir en mulig mulighet til å nyte dette."
-    ],
-    audioSrc: "hytta et hjem borte fra hjemmet.mp3"
-  },
-  nationaldag: {
-    title: "17.mai – Norges nasjonaldag",
-    translations: [
-      "17. mai er Norges nasjonaldag.",
-      "Det var på denne dagen i 1814 at Norge fikk sin egen grunnlov.",
-      "Grunnloven ble skrevet på Eidsvoll.",
-      "På denne tiden var Norge i union med Danmark, men ønsket å bli et fritt land.",
-      "Ledende menn fra ulike deler av Norge møttes og skrev grunnloven.",
-      "Norge ble da et selvstendig land.",
-      "Selvstendigheten varte ikke lenge og Norge gikk inn i en ny union med Sverige i august 1814.",
-      "Grunnloven fra 1814 var fremdeles gyldig og hjalp Norge til selvstendighet i 1905.",
-      "I begynnelsen ble 17.mai bare feiret i visse private kretser, før feiringen etter hvert ble utbredt.",
-      "I dag feirer vi 17. mai med glede og stolthet landet rundt.",
-      "Folk pynter husene sine med norske flagg og gatene er fulle av mennesker.",
-      "Barnetoget er en viktig del av 17. mai‑feiringen.",
-      "Barn fra skoler og barnehager går i tog gjennom byen.",
-      "De synger sanger og roper hurra.",
-      "Mange barn har på seg bunader.",
-      "Bunader er tradisjonelle norske klær.",
-      "Foreldre, besteforeldre og venner ser på barnetoget og vifter med flagg.",
-      "Korps spiller musikk i toget.",
-      "Trommer, fløyter og trompeter lager festlig stemning.",
-      "Det er også russetog, hvor ungdommer som er ferdige med videregående skole, går i tog.",
-      "De har på seg røde eller blå klær.",
-      "Mat er en viktig del av feiringen.",
-      "Vi spiser pølser, is og kaker.",
-      "Mange har også frokoster og lunsjer med familie og venner.",
-      "Bordene er pyntet med flagg og blomster.",
-      "Det er en dag for å være sammen med dem man er glad i.",
-      "17. mai er en dag full av glede.",
-      "Overalt hører man folk rope: 'Hipp hipp hurra, hurra, hurra!'",
-      "Det er en dag for alle i Norge, både store og små.",
-      "Vi feirer friheten vår og vår stolte historie.",
-      "17. mai er virkelig en spesiell dag i Norge, en dag vi aldri glemmer."
-    ],
-    audioSrc: "17 mai n.mp3"
-  }
-};
+  <section class="section">
+    <h2>Categories <a href="#" class="view-all">view all</a></h2>
+    <div class="cards">
+      <div class="card"><img src="insudtry.png" alt="Oil Rig"><h3>Det norske oljeeventyret</h3><p>The Norwegian oil fairytale</p></div>
+      <div class="card"><img src="easter.png" alt="Easter"><h3>Norske påsketradisjoner</h3><p>Norwegian easter traditions</p></div>
+      <div class="card"><img src="beach.png" alt="Granka Beach"><h3>Granka - Det norske paradiset Granka</h3><p>The Norwegian paradise</p></div>
+    </div>
+  </section>
 
-// Show story in modal
-function showStory(key) {
-  const s = stories[key];
-  if (!s) return;
-  document.getElementById("storyTitle").textContent = s.title;
-  document.getElementById("storyText").innerHTML = s.translations.map(line=>`<span>${line}</span><br>`).join('');
-  document.getElementById("storyAudio").src = s.audioSrc;
-  document.getElementById("overlay").style.display = 'block';
-  document.getElementById("storyDialog").style.display = 'block';
-  document.getElementById("storyAudio").pause();
-}
+  <footer>
+    <div class="footer-column">
+      <div class="footer-logo"><img src="logo.png" alt="" height="50"></div>
+      <p class="footer-text">Explore the stories, traditions, and adventures that make Norway unique.</p>
+    </div>
+    <div class="footer-column footer-links">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li><a href="#">How it works</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">Contact us</a></li>
+      </ul>
+    </div>
+    <div class="footer-column"></div>
+  </footer>
+</body>
+</html>
 
-function closeDialog() {
-  document.getElementById("storyDialog").style.display = 'none';
-  document.getElementById("overlay").style.display = 'none';
-  document.getElementById("storyAudio").pause();
-}
-<script src="script2.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
